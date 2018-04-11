@@ -74,7 +74,7 @@ namespace ETEditor
 
 			SetBundleAndAtlasWithoutShare("Assets/Bundles/UI");
 
-			SetRootBundleOnly("Assets/Bundles/Unit");
+            //SetRootBundleOnly("Assets/Bundles/Unit");
 
 			AssetDatabase.SaveAssets();
 			AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport | ImportAssetOptions.ForceUpdate);

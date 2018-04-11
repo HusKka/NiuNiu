@@ -17,29 +17,35 @@ namespace ETHotfix
 	
 	public class UILoginComponent: Component
 	{
-		private GameObject account;
-		private GameObject loginBtn;
+		private GameObject weixinBtn;
+		private GameObject visitorBtn;
 
 		public void Awake()
 		{
 			ReferenceCollector rc = this.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
-			loginBtn = rc.Get<GameObject>("LoginBtn");
-			loginBtn.GetComponent<Button>().onClick.Add(OnLogin);
-			this.account = rc.Get<GameObject>("Account");
-		}
+            weixinBtn = rc.Get<GameObject>("WeiXinBtn");
+            weixinBtn.GetComponent<Button>().onClick.Add(OnWeiXinLogin);
+            visitorBtn = rc.Get<GameObject>("VisitorBtn");
+            visitorBtn.GetComponent<Button>().onClick.Add(OnVisitorLogin);
+        }
 
-		public async void OnLogin()
+        public void OnWeiXinLogin()
+        {
+            Log.Info("OnWeiXinLogin!");
+        }
+
+		public async void OnVisitorLogin()
 		{
 			SessionWrap sessionWrap = null;
 			try
 			{
+                string macAddress = SystemInfo.deviceUniqueIdentifier;
+                string password = "VisitorPassword";
+
 				IPEndPoint connetEndPoint = NetworkHelper.ToIPEndPoint(GlobalConfigComponent.Instance.GlobalProto.Address);
-
-				string text = this.account.GetComponent<InputField>().text;
-
 				Session session = ETModel.Game.Scene.GetComponent<NetOuterComponent>().Create(connetEndPoint);
 				sessionWrap = new SessionWrap(session);
-				R2C_Login r2CLogin = (R2C_Login) await sessionWrap.Call(new C2R_Login() { Account = text, Password = "111111" });
+                R2C_Login r2CLogin = (R2C_Login)await sessionWrap.Call(new C2R_Login() { Account = macAddress, Password = password });
 				sessionWrap.Dispose();
 
 				connetEndPoint = NetworkHelper.ToIPEndPoint(r2CLogin.Address);
