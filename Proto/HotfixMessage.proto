@@ -18,6 +18,7 @@ message C2G_LoginGate // IRequest
 message G2C_LoginGate // IResponse
 {
 	required int64 PlayerId = 1;
+	required long UserId = 2;
 }
 
 message G2C_TestHotfixMessage // IMessage

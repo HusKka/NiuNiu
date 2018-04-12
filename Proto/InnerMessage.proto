@@ -151,7 +151,7 @@
 
 	message R2G_GetLoginKey // IRequest
 	{
-		required int UserID = 1;
+		required int64 UserID = 1;
 	}
 
 	message G2R_GetLoginKey // IResponse
@@ -179,5 +179,15 @@
     message G2R_PlayerKickOut // IResponse
     {
 
+    }
+	
+	message G2R_PlayerOnline // IRequest
+    {
+        required long UserID = 1;
+        required int GateAppID = 2;
+    }
+	
+	message R2G_PlayerOnline // IResponse
+    {
     }
 }

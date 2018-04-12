@@ -24,7 +24,7 @@ namespace ETHotfix
 				unit.Position = new Vector3(unitInfo.X / 1000f, 0, unitInfo.Z / 1000f);
 				unit.IntPos = new VInt3(unitInfo.X, 0, unitInfo.Z);
 
-				if (PlayerComponent.Instance.MyPlayer.UnitId == unit.Id)
+				if (PlayerComponent.Instance.MyPlayer.playerId == unit.Id)
 				{
 					ETModel.Game.Scene.GetComponent<CameraComponent>().Unit = unit;
 				}

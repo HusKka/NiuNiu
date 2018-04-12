@@ -1,10 +1,24 @@
 ﻿namespace ETModel
 {
-	public sealed class Player : Entity
+    [ObjectSystem]
+    public class PlayerAwakeSystem : AwakeSystem<Player, long>
+    {
+        public override void Awake(Player self, long id)
+        {
+            self.Awake(id);
+        }
+    }
+
+    public sealed class Player : Entity
 	{
-		public long UnitId { get; set; }
-		
-		public override void Dispose()
+		public long playerId { get; set; }
+
+        public void Awake(long id)
+        {
+            this.playerId = id;
+        }
+
+        public override void Dispose()
 		{
 			if (this.IsDisposed)
 			{
@@ -12,6 +26,8 @@
 			}
 
 			base.Dispose();
-		}
+
+            playerId = 0;
+        }
 	}
 }

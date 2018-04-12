@@ -68,6 +68,9 @@ namespace ETModel
 		[ProtoMember(1, IsRequired = true)]
 		public long PlayerId;
 
+		[ProtoMember(2, IsRequired = true)]
+		public long UserId;
+
 	}
 
 	[Message(HotfixOpcode.G2C_TestHotfixMessage)]
