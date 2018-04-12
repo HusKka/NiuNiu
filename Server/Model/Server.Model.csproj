@@ -121,8 +121,10 @@
 
   <ItemGroup>
     <Folder Include="Component\Config\" />
+    <Folder Include="Entity\DB\" />
     <Folder Include="Module\Message\Network\KCP\" />
     <Folder Include="Module\Message\Network\TCP\" />
     <Folder Include="Module\Numeric\" />
+    <Folder Include="Helper\" />
   </ItemGroup>
 </Project>
