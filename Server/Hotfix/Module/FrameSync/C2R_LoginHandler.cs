@@ -14,7 +14,7 @@ namespace ETHotfix
 			R2C_Login response = new R2C_Login();
 			try
 			{
-                if (message.Password != "VisitorLogin")
+                if (message.Password != "VisitorPassword")
                 {
                     response.Error = ErrorCode.ERR_AccountOrPasswordError;
                     reply(response);
@@ -40,7 +40,8 @@ namespace ETHotfix
                     //新建用户信息
                     UserInfo newUser = ComponentFactory.CreateWithId<UserInfo>(account.Id);
                     newUser.NickName = $"用户{message.Account}";
-                    newUser.Money = 10000;
+                    BaseConfig baseConfig = (BaseConfig)Game.Scene.GetComponent<ConfigComponent>().Get(typeof(BaseConfig), 1);
+                    newUser.Money = baseConfig.Value1;
 
                     //保存到数据库
                     await dbProxy.Save(account);

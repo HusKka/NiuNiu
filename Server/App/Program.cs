@@ -90,7 +90,9 @@ namespace App
 						Game.Scene.AddComponent<ActorProxyComponent>();
 						Game.Scene.AddComponent<PlayerComponent>();
 						Game.Scene.AddComponent<UnitComponent>();
-						Game.Scene.AddComponent<DBComponent>();
+                        //PS：如果启动闪退有可能是服务器配置文件没有填数据库配置，请正确填写
+                        //这里需要将DBComponent的Awake注释去掉才能连接MongoDB
+                        Game.Scene.AddComponent<DBComponent>();
 						Game.Scene.AddComponent<DBProxyComponent>();
 						Game.Scene.AddComponent<DBCacheComponent>();
 						Game.Scene.AddComponent<LocationComponent>();

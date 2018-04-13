@@ -91,11 +91,6 @@ namespace ETHotfix
 
                 Log.Info("登陆gate成功!");
 
-                // 创建Player
-                Player player = ETModel.ComponentFactory.CreateWithId<Player, long>(g2CLoginGate.PlayerId, g2CLoginGate.UserId);
-                PlayerComponent playerComponent = ETModel.Game.Scene.GetComponent<PlayerComponent>();
-                playerComponent.MyPlayer = player;
-
                 //保存本地玩家
                 User user = ETModel.ComponentFactory.CreateWithId<User, long>(g2CLoginGate.PlayerId, g2CLoginGate.UserId);
                 ClientComponent.Instance.LocalPlayer = user;

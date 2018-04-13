@@ -77,9 +77,10 @@ public class ExcelExporterEditor : EditorWindow
 
 			if (GUILayout.Button("生成配置类"))
 			{
-				ExportAllClass(@".\Assets\Scripts\Entity\Config");
-			}
-		}
+                this.isClient = true;
+                ExportAllClass(@".\Assets\Scripts\Entity\Config");
+            }
+        }
 		catch (Exception e)
 		{
 			Log.Error(e);
@@ -175,7 +176,7 @@ public class ExcelExporterEditor : EditorWindow
 
 	private void ExportAll(string exportDir)
 	{
-		string md5File = Path.Combine(ExcelPath, "md5.txt");
+        string md5File = Path.Combine(ExcelPath, (isClient ? "Client" : "Server") + "_md5.txt");
 		if (!File.Exists(md5File))
 		{
 			this.md5Info = new ExcelMD5Info();
