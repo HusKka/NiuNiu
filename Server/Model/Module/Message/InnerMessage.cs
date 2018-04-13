@@ -450,7 +450,7 @@ namespace ETModel
 		public int RpcId { get; set; }
 
 		[ProtoMember(1, IsRequired = true)]
-		public long UserID;
+		public long UserId;
 
 	}
 
@@ -516,7 +516,7 @@ namespace ETModel
 		public int RpcId { get; set; }
 
 		[ProtoMember(1, IsRequired = true)]
-		public long UserID;
+		public long UserId;
 
 	}
 
@@ -543,16 +543,43 @@ namespace ETModel
 		public int RpcId { get; set; }
 
 		[ProtoMember(1, IsRequired = true)]
-		public long UserID;
+		public long UserId;
 
 		[ProtoMember(2, IsRequired = true)]
-		public int GateAppID;
+		public int GateAppId;
 
 	}
 
 	[Message(InnerOpcode.R2G_PlayerOnline)]
 	[ProtoContract]
 	public partial class R2G_PlayerOnline: IResponse
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91, IsRequired = true)]
+		public int Error { get; set; }
+
+		[ProtoMember(92, IsRequired = true)]
+		public string Message { get; set; }
+
+	}
+
+	[Message(InnerOpcode.G2R_PlayerOffline)]
+	[ProtoContract]
+	public partial class G2R_PlayerOffline: IRequest
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1, IsRequired = true)]
+		public long UserID;
+
+	}
+
+	[Message(InnerOpcode.R2G_PlayerOffline)]
+	[ProtoContract]
+	public partial class R2G_PlayerOffline: IResponse
 	{
 		[ProtoMember(90, IsRequired = true)]
 		public int RpcId { get; set; }

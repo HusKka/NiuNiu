@@ -20,7 +20,7 @@ namespace ETHotfix
                 StartConfig userGateConfig = Game.Scene.GetComponent<StartConfigComponent>().Get(gateAppId);
                 IPEndPoint userGateIPEndPoint = userGateConfig.GetComponent<InnerConfig>().IPEndPoint;
                 Session userGateSession = Game.Scene.GetComponent<NetInnerComponent>().Get(userGateIPEndPoint);
-                await userGateSession.Call(new R2G_PlayerKickOut() { UserID = userId });
+                await userGateSession.Call(new R2G_PlayerKickOut() { UserId = userId });
 
                 Log.Info($"玩家{userId}已被踢下线");
             }

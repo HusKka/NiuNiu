@@ -14,11 +14,11 @@ namespace ETHotfix
                 OnlineComponent onlineComponent = Game.Scene.GetComponent<OnlineComponent>();
 
                 //将已在线玩家踢下线
-                await RealmHelper.KickOutPlayer(message.UserID);
+                await RealmHelper.KickOutPlayer(message.UserId);
 
                 //玩家上线
-                onlineComponent.Add(message.UserID, message.GateAppID);
-                Log.Info($"玩家{message.UserID}上线");
+                onlineComponent.Add(message.UserId, message.GateAppId);
+                Log.Info($"玩家{message.UserId}上线");
 
                 reply(response);
             }

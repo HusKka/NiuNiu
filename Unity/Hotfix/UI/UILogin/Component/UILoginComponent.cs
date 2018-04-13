@@ -96,6 +96,10 @@ namespace ETHotfix
                 PlayerComponent playerComponent = ETModel.Game.Scene.GetComponent<PlayerComponent>();
                 playerComponent.MyPlayer = player;
 
+                //保存本地玩家
+                User user = ETModel.ComponentFactory.CreateWithId<User, long>(g2CLoginGate.PlayerId, g2CLoginGate.UserId);
+                ClientComponent.Instance.LocalPlayer = user;
+
                 Game.Scene.GetComponent<UIComponent>().Create(UIType.UILobby);
 				Game.Scene.GetComponent<UIComponent>().Remove(UIType.UILogin);
 			}

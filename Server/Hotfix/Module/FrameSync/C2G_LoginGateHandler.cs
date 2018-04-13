@@ -25,22 +25,23 @@ namespace ETHotfix
                 //Key过期
                 gateSessionKeyComponent.Remove(message.Key);
 
-                Player player = ComponentFactory.Create<Player, long>(userId);
-                player.AddComponent<UnitGateComponent, long>(session.Id);
-                Game.Scene.GetComponent<PlayerComponent>().Add(player);
-                await player.AddComponent<ActorComponent>().AddLocation();
+                //创建User对象
+                User user = UserFactory.Create(userId, session.Id);
+                await user.AddComponent<ActorComponent>().AddLocation();
 
-                session.AddComponent<SessionPlayerComponent>().Player = player;
+                //添加User对象关联到Session上
+                session.AddComponent<SessionUserComponent>().User = user;
+                //添加消息转发组件
                 await session.AddComponent<ActorComponent, string>(ActorType.GateSession).AddLocation();
 
                 //向登录服务器发送玩家上线消息
                 StartConfigComponent config = Game.Scene.GetComponent<StartConfigComponent>();
                 IPEndPoint realmIPEndPoint = config.RealmConfig.GetComponent<InnerConfig>().IPEndPoint;
                 Session realmSession = Game.Scene.GetComponent<NetInnerComponent>().Get(realmIPEndPoint);
-                await realmSession.Call(new G2R_PlayerOnline() { UserID = userId, GateAppID = config.StartConfig.AppId });
+                await realmSession.Call(new G2R_PlayerOnline() { UserId = userId, GateAppId = config.StartConfig.AppId });
 
-                response.PlayerId = player.Id;
-                response.UserId = player.playerId;
+                response.PlayerId = user.Id;
+                response.UserId = user.UserID;
                 reply(response);
 
 				session.Send(new G2C_TestHotfixMessage() { Info = "recv hotfix message success" });
