@@ -8,14 +8,14 @@ namespace ETHotfix
     {
         protected override void Run(Session session, M2C_GamerEnterRoom message)
         {
-            UI uiRoom = Game.Scene.GetComponent<UIComponent>().Get(UIType.LandlordsRoom);
-            LandlordsRoomComponent landlordsRoomComponent = uiRoom.GetComponent<LandlordsRoomComponent>();
+            UI uiRoom = Game.Scene.GetComponent<UIComponent>().Get(UIType.UIRoom);
+            UIRoomComponent uiRoomComponent = uiRoom.GetComponent<UIRoomComponent>();
             GamerComponent gamerComponent = uiRoom.GetComponent<GamerComponent>();
 
             //从匹配状态中切换为准备状态
-            if (landlordsRoomComponent.Matching)
+            if (uiRoomComponent.Matching)
             {
-                landlordsRoomComponent.Matching = false;
+                uiRoomComponent.Matching = false;
                 GameObject matchPrompt = uiRoom.GameObject.Get<GameObject>("MatchPrompt");
                 if (matchPrompt.activeSelf)
                 {
@@ -37,12 +37,12 @@ namespace ETHotfix
                     if ((localGamerIndex + 1) % 3 == i)
                     {
                         //玩家在本地玩家右边
-                        landlordsRoomComponent.AddGamer(gamer, 2);
+                        uiRoomComponent.AddGamer(gamer, 2);
                     }
                     else
                     {
                         //玩家在本地玩家左边
-                        landlordsRoomComponent.AddGamer(gamer, 0);
+                        uiRoomComponent.AddGamer(gamer, 0);
                     }
                 }
             }

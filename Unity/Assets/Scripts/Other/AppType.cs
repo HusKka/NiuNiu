@@ -21,8 +21,8 @@ namespace ETModel
 		Client = 1 << 31,
 
 		// 7
-		AllServer = Manager | Realm | Gate | Http | DB | Location | Map
-	}
+		AllServer = Manager | Realm | Gate | Http | DB | Location | Map | Match
+    }
 
 	public static class AppTypeHelper
 	{

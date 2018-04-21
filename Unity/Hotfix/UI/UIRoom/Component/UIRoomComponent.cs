@@ -16,7 +16,7 @@ namespace ETHotfix
 
     public class UIRoomComponent : Component
     {
-        private LandlordsInteractionComponent interaction;
+        private UIInteractionComponent interaction;
 
         private Text multiples;
 
@@ -24,15 +24,15 @@ namespace ETHotfix
 
         public bool Matching { get; set; }
 
-        public LandlordsInteractionComponent Interaction
+        public UIInteractionComponent Interaction
         {
             get
             {
                 if (interaction == null)
                 {
                     UI uiRoom = this.GetParent<UI>();
-                    UI uiInteraction = LandlordsInteractionFactory.Create(UIType.LandlordsInteraction, uiRoom);
-                    interaction = uiInteraction.GetComponent<LandlordsInteractionComponent>();
+                    UI uiInteraction = UIInteractionFactory.Create(UIType.UIInteraction, uiRoom);
+                    interaction = uiInteraction.GetComponent<UIInteractionComponent>();
                 }
                 return interaction;
             }
@@ -127,12 +127,12 @@ namespace ETHotfix
         /// </summary>
         public void OnQuit()
         {
-            //发送退出房间消息
-            SessionWrapComponent.Instance.Session.Send(new C2G_ReturnLobby_Ntt());
+            ////发送退出房间消息
+            //SessionWrapComponent.Instance.Session.Send(new C2G_ReturnLobby_Ntt());
 
-            //切换到大厅界面
-            Game.Scene.GetComponent<UIComponent>().Create(UIType.UILobby);
-            Game.Scene.GetComponent<UIComponent>().Remove(UIType.UIRoom);
+            ////切换到大厅界面
+            //Game.Scene.GetComponent<UIComponent>().Create(UIType.UILobby);
+            //Game.Scene.GetComponent<UIComponent>().Remove(UIType.UIRoom);
         }
 
         /// <summary>
@@ -140,8 +140,8 @@ namespace ETHotfix
         /// </summary>
         private void OnReady()
         {
-            //发送准备
-            SessionWrapComponent.Instance.Session.Send(new Actor_GamerReady_Ntt());
+            ////发送准备
+            //SessionWrapComponent.Instance.Session.Send(new Actor_GamerReady_Ntt());
         }
     }
 }
