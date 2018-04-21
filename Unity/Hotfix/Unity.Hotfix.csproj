@@ -62,6 +62,7 @@
     <Compile Include="Base\Object\IDestroySystem.cs" />
     <Compile Include="Base\Object\IStartSystem.cs" />
     <Compile Include="Component\SessionOfflineComponent.cs" />
+    <Compile Include="Handler\M2C_GamerEnterRoomHandler.cs" />
     <Compile Include="Module\FrameSync\OperaComponent.cs" />
     <Compile Include="Entity\Config\UnitConfig.cs" />
     <Compile Include="Module\FrameSync\TestHotfixSubscribMonoEvent_LogString.cs" />
@@ -109,6 +110,8 @@
     <Compile Include="UI\UILogin\Component\UILoginComponent.cs" />
     <Compile Include="UI\UILogin\Event\InitSceneStart_CreateLoginUI.cs" />
     <Compile Include="UI\UILogin\Factory\UILoginFactory.cs" />
+    <Compile Include="UI\UIRoom\Component\UIRoomComponent.cs" />
+    <Compile Include="UI\UIRoom\Factory\UIRoomFactory.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
