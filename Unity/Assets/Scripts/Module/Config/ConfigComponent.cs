@@ -106,5 +106,17 @@ namespace ETModel
 			bool ret = this.allConfig.TryGetValue(type, out configCategory);
 			return ret ? configCategory : null;
 		}
-	}
+
+        public T Get<T>(int id) where T:IConfig
+        {
+            ACategory configCategory;
+            Type type = typeof(T);
+            if (!this.allConfig.TryGetValue(type, out configCategory))
+            {
+                throw new Exception($"ConfigComponent not found key: {type.FullName}");
+            }
+
+            return (T)configCategory.TryGet(id);
+        }
+    }
 }

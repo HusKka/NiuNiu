@@ -48,3 +48,39 @@ message G2C_PlayerInfo // IResponse
 {
 	repeated PlayerInfo PlayerInfos = 1;
 }
+
+message C2G_GetUserInfo // IRequest
+{
+    required long UserID = 1;
+}
+
+message G2C_GetUserInfo // IResponse
+{
+    required string NickName = 1;
+    required int Wins = 2;
+    required int Loses = 3;
+    required long Gold = 4;
+}
+
+message C2G_StartMatch // IRequest
+{
+}
+
+message G2C_StartMatch // IResponse
+{
+}
+
+#region Map-Client
+
+message GamerInfo
+{
+    required long UserID = 1;
+    required bool IsReady = 2;
+}
+
+message M2C_GamerEnterRoom // IActorMessage
+{
+    repeated GamerInfo Gamers = 1;
+}
+
+#endregion

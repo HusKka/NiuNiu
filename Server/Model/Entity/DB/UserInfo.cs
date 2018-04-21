@@ -18,6 +18,6 @@ namespace ETModel
         public int Loses { get; set; }
 
         //余额
-        public long Money { get; set; }
+        public long Gold { get; set; }
     }
 }

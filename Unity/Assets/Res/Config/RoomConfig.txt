@@ -1,0 +1,1 @@
+{"Id":1,"Multiples":1,"BasePointPerMatch":10,"MinThreshold":100}

@@ -117,10 +117,10 @@ namespace App
                         //Game.Scene.AddComponent<RoomComponent>();
 
                         //MatchGlobalComponent
-                        //Game.Scene.AddComponent<AllotMapComponent>();
-                        //Game.Scene.AddComponent<MatchComponent>();
-                        //Game.Scene.AddComponent<MatcherComponent>();
-                        //Game.Scene.AddComponent<MatchRoomComponent>();
+                        Game.Scene.AddComponent<AllotMapComponent>();
+                        Game.Scene.AddComponent<MatchComponent>();
+                        Game.Scene.AddComponent<MatcherComponent>();
+                        Game.Scene.AddComponent<MatchRoomComponent>();
 
                         //RealmGlobalComponent
                         Game.Scene.AddComponent<OnlineComponent>();

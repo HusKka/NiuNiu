@@ -26,7 +26,9 @@ namespace ETModel
 
 		public StartConfig LocationConfig { get; private set; }
 
-		public List<StartConfig> MapConfigs { get; private set; }
+        public StartConfig MatchConfig { get; private set; }
+
+        public List<StartConfig> MapConfigs { get; private set; }
 
 		public List<StartConfig> GateConfigs { get; private set; }
 
@@ -64,7 +66,12 @@ namespace ETModel
 						this.DBConfig = startConfig;
 					}
 
-					if (startConfig.AppType.Is(AppType.Map))
+                    if (startConfig.AppType.Is(AppType.Match))
+                    {
+                        this.MatchConfig = startConfig;
+                    }
+
+                    if (startConfig.AppType.Is(AppType.Map))
 					{
 						this.MapConfigs.Add(startConfig);
 					}

@@ -6,14 +6,14 @@ using MongoDB.Bson;
 
 namespace ETHotfix
 {
-	[MessageHandler(AppType.Realm)]
-	public class C2R_LoginHandler : AMRpcHandler<C2R_Login, R2C_Login>
-	{
-		protected override async void Run(Session session, C2R_Login message, Action<R2C_Login> reply)
-		{
-			R2C_Login response = new R2C_Login();
-			try
-			{
+    [MessageHandler(AppType.Realm)]
+    public class C2R_LoginHandler : AMRpcHandler<C2R_Login, R2C_Login>
+    {
+        protected override async void Run(Session session, C2R_Login message, Action<R2C_Login> reply)
+        {
+            R2C_Login response = new R2C_Login();
+            try
+            {
                 if (message.Password != "VisitorPassword")
                 {
                     response.Error = ErrorCode.ERR_AccountOrPasswordError;
@@ -39,9 +39,9 @@ namespace ETHotfix
 
                     //新建用户信息
                     UserInfo newUser = ComponentFactory.CreateWithId<UserInfo>(account.Id);
-                    newUser.NickName = $"用户{message.Account}";
-                    BaseConfig baseConfig = (BaseConfig)Game.Scene.GetComponent<ConfigComponent>().Get(typeof(BaseConfig), 1);
-                    newUser.Money = baseConfig.Value1;
+                    newUser.NickName = $"用户{message.Account.Substring(0, 4)}";
+                    BaseConfig baseConfig = Game.Scene.GetComponent<ConfigComponent>().Get<BaseConfig>(1);
+                    newUser.Gold = baseConfig.Value1;
 
                     //保存到数据库
                     await dbProxy.Save(account);
@@ -55,23 +55,23 @@ namespace ETHotfix
 
                 // 随机分配一个Gate
                 StartConfig config = Game.Scene.GetComponent<RealmGateAddressComponent>().GetAddress();
-				//Log.Debug($"gate address: {MongoHelper.ToJson(config)}");
-				IPEndPoint innerAddress = config.GetComponent<InnerConfig>().IPEndPoint;
-				Session gateSession = Game.Scene.GetComponent<NetInnerComponent>().Get(innerAddress);
+                //Log.Debug($"gate address: {MongoHelper.ToJson(config)}");
+                IPEndPoint innerAddress = config.GetComponent<InnerConfig>().IPEndPoint;
+                Session gateSession = Game.Scene.GetComponent<NetInnerComponent>().Get(innerAddress);
 
                 // 向gate请求一个key,客户端可以拿着这个key连接gate
                 G2R_GetLoginKey g2RGetLoginKey = (G2R_GetLoginKey)await gateSession.Call(new R2G_GetLoginKey() { UserId = account.Id });
 
-				string outerAddress = config.GetComponent<OuterConfig>().IPEndPoint2.ToString();
+                string outerAddress = config.GetComponent<OuterConfig>().IPEndPoint2.ToString();
 
-				response.Address = outerAddress;
-				response.Key = g2RGetLoginKey.Key;
-				reply(response);
-			}
-			catch (Exception e)
-			{
-				ReplyError(response, e, reply);
-			}
-		}
-	}
+                response.Address = outerAddress;
+                response.Key = g2RGetLoginKey.Key;
+                reply(response);
+            }
+            catch (Exception e)
+            {
+                ReplyError(response, e, reply);
+            }
+        }
+    }
 }

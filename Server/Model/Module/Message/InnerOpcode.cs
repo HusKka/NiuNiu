@@ -40,5 +40,12 @@ namespace ETModel
 		 public const ushort R2G_PlayerOnline = 1036;
 		 public const ushort G2R_PlayerOffline = 1037;
 		 public const ushort R2G_PlayerOffline = 1038;
+		 public const ushort G2M_PlayerEnterMatch = 1039;
+		 public const ushort M2G_PlayerEnterMatch = 1040;
+		 public const ushort M2G_MatchSucess = 1041;
+		 public const ushort MH2MP_CreateRoom = 1042;
+		 public const ushort MP2MH_CreateRoom = 1043;
+		 public const ushort MH2MP_PlayerEnterRoom = 1044;
+		 public const ushort MP2MH_PlayerEnterRoom = 1045;
 	}
 }

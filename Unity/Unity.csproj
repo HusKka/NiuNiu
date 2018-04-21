@@ -189,6 +189,7 @@
     <Compile Include="Assets\Scripts\Component\SceneChangeComponent.cs" />
     <Compile Include="Assets\Scripts\Component\TimerComponent.cs" />
     <Compile Include="Assets\Scripts\Entity\Config\BaseConfig.cs" />
+    <Compile Include="Assets\Scripts\Entity\Config\RoomConfig.cs" />
     <Compile Include="Assets\Scripts\Entity\Config\UnitConfig.cs" />
     <Compile Include="Assets\Scripts\Entity\Game.cs" />
     <Compile Include="Assets\Scripts\Entity\Hotfix.cs" />
@@ -687,6 +688,7 @@
     <None Include="Assets\Res\Config\BaseConfig.txt" />
     <None Include="Assets\Res\Config\BuffConfig.txt" />
     <None Include="Assets\Res\Config\GlobalProto.txt" />
+    <None Include="Assets\Res\Config\RoomConfig.txt" />
     <None Include="Assets\Res\Config\UnitConfig.txt" />
     <None Include="Assets\link.xml" />
   </ItemGroup>

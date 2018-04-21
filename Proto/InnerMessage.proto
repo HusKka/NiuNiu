@@ -171,6 +171,8 @@
 		required int Count = 2;
 	}
 	
+	#region Realm-Gate
+	
 	message R2G_PlayerKickOut // IRequest
     {
         required long UserId = 1;
@@ -178,8 +180,11 @@
 
     message G2R_PlayerKickOut // IResponse
     {
-
     }
+	
+	#endregion
+	
+	#region Gate-Realm
 	
 	message G2R_PlayerOnline // IRequest
     {
@@ -199,4 +204,55 @@
 	message R2G_PlayerOffline // IResponse
     {
     }
+	
+	#endregion
+	
+	#region Gate-Match
+	
+	message G2M_PlayerEnterMatch // IRequest
+    {
+        required long PlayerID = 1;
+        required long UserID = 2;
+        required long SessionID = 3;
+    }
+
+    message M2G_PlayerEnterMatch // IResponse
+    {
+    }
+	
+	#endregion
+	
+	#region Match-Gate
+	
+    message M2G_MatchSucess // IActorMessage
+    {
+        required long GamerID = 1;
+    }
+
+    #endregion
+	
+	#region Match-Map
+	
+	message MH2MP_CreateRoom // IRequest
+    {
+    }
+
+    message MP2MH_CreateRoom // IResponse
+    {
+        required long RoomID = 1;
+    }
+	
+	message MH2MP_PlayerEnterRoom // IActorRequest
+    {
+        required long PlayerID = 1;
+        required long UserID = 2;
+        required long SessionID = 3;
+    }
+
+    message MP2MH_PlayerEnterRoom // IActorResponse
+    {
+        required long GamerID = 1;
+    }
+	
+	#endregion
 }

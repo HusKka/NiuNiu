@@ -12,5 +12,11 @@ namespace ETModel
 		 public const ushort PlayerInfo = 10008;
 		 public const ushort C2G_PlayerInfo = 10009;
 		 public const ushort G2C_PlayerInfo = 10010;
+		 public const ushort C2G_GetUserInfo = 10011;
+		 public const ushort G2C_GetUserInfo = 10012;
+		 public const ushort C2G_StartMatch = 10013;
+		 public const ushort G2C_StartMatch = 10014;
+		 public const ushort GamerInfo = 10015;
+		 public const ushort M2C_GamerEnterRoom = 10016;
 	}
 }

@@ -592,4 +592,118 @@ namespace ETModel
 
 	}
 
+	[Message(InnerOpcode.G2M_PlayerEnterMatch)]
+	[ProtoContract]
+	public partial class G2M_PlayerEnterMatch: IRequest
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1, IsRequired = true)]
+		public long PlayerID;
+
+		[ProtoMember(2, IsRequired = true)]
+		public long UserID;
+
+		[ProtoMember(3, IsRequired = true)]
+		public long SessionID;
+
+	}
+
+	[Message(InnerOpcode.M2G_PlayerEnterMatch)]
+	[ProtoContract]
+	public partial class M2G_PlayerEnterMatch: IResponse
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91, IsRequired = true)]
+		public int Error { get; set; }
+
+		[ProtoMember(92, IsRequired = true)]
+		public string Message { get; set; }
+
+	}
+
+	[Message(InnerOpcode.M2G_MatchSucess)]
+	[ProtoContract]
+	public partial class M2G_MatchSucess: IActorMessage
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93, IsRequired = true)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1, IsRequired = true)]
+		public long GamerID;
+
+	}
+
+	[Message(InnerOpcode.MH2MP_CreateRoom)]
+	[ProtoContract]
+	public partial class MH2MP_CreateRoom: IRequest
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+	}
+
+	[Message(InnerOpcode.MP2MH_CreateRoom)]
+	[ProtoContract]
+	public partial class MP2MH_CreateRoom: IResponse
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91, IsRequired = true)]
+		public int Error { get; set; }
+
+		[ProtoMember(92, IsRequired = true)]
+		public string Message { get; set; }
+
+		[ProtoMember(1, IsRequired = true)]
+		public long RoomID;
+
+	}
+
+	[Message(InnerOpcode.MH2MP_PlayerEnterRoom)]
+	[ProtoContract]
+	public partial class MH2MP_PlayerEnterRoom: IActorRequest
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93, IsRequired = true)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1, IsRequired = true)]
+		public long PlayerID;
+
+		[ProtoMember(2, IsRequired = true)]
+		public long UserID;
+
+		[ProtoMember(3, IsRequired = true)]
+		public long SessionID;
+
+	}
+
+	[Message(InnerOpcode.MP2MH_PlayerEnterRoom)]
+	[ProtoContract]
+	public partial class MP2MH_PlayerEnterRoom: IActorResponse
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91, IsRequired = true)]
+		public int Error { get; set; }
+
+		[ProtoMember(92, IsRequired = true)]
+		public string Message { get; set; }
+
+		[ProtoMember(1, IsRequired = true)]
+		public long GamerID;
+
+	}
+
 }

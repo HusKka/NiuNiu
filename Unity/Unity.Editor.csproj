@@ -236,6 +236,7 @@
     <None Include="Assets\Res\Config\BaseConfig.txt" />
     <None Include="Assets\Res\Config\BuffConfig.txt" />
     <None Include="Assets\Res\Config\GlobalProto.txt" />
+    <None Include="Assets\Res\Config\RoomConfig.txt" />
     <None Include="Assets\Res\Config\UnitConfig.txt" />
     <None Include="Assets\link.xml" />
   </ItemGroup>

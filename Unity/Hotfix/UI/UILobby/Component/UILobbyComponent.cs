@@ -63,12 +63,12 @@ namespace ETHotfix
         {
             //获取玩家数据
             long userId = ClientComponent.Instance.LocalPlayer.UserID;
-            C2G_GetUserInfo c2G_GetUserInfo_Req = new C2G_GetUserInfo() { UserID = userId };
-            G2C_GetUserInfo g2C_GetUserInfo_Ack = await SessionWrapComponent.Instance.Session.Call(c2G_GetUserInfo_Req) as G2C_GetUserInfo;
+            C2G_GetUserInfo c2G_GetUserInfo = new C2G_GetUserInfo() { UserID = userId };
+            G2C_GetUserInfo g2C_GetUserInfo = await SessionWrapComponent.Instance.Session.Call(c2G_GetUserInfo) as G2C_GetUserInfo;
 
             //显示用户信息
-            rc.Get<GameObject>("NickName").GetComponent<Text>().text = g2C_GetUserInfo_Ack.NickName;
-            rc.Get<GameObject>("Money").GetComponent<Text>().text = g2C_GetUserInfo_Ack.Money.ToString();
+            nameText.text = g2C_GetUserInfo.NickName;
+            goldText.text = g2C_GetUserInfo.Gold.ToString();
         }
 
         public void OnEmptyBtnClick(GameObject go)
@@ -78,8 +78,38 @@ namespace ETHotfix
 
         public void OnGoldPlaceBtnClick()
         {
+            OnStartMatch();
         }
 
+        /// <summary>
+        /// 开始匹配按钮事件
+        /// </summary>
+        public async void OnStartMatch()
+        {
+            try
+            {
+                //发送开始匹配消息
+                C2G_StartMatch c2G_StartMatch = new C2G_StartMatch();
+                G2C_StartMatch g2C_StartMatch = await SessionWrapComponent.Instance.Session.Call(c2G_StartMatch) as G2C_StartMatch;
+
+                if (g2C_StartMatch.Error == ErrorCode.ERR_UserGoldLessError)
+                {
+                    Log.Error("余额不足");
+                    return;
+                }
+
+                //切换到房间界面
+                UI room = Game.Scene.GetComponent<UIComponent>().Create(UIType.UIRoom);
+                Game.Scene.GetComponent<UIComponent>().Remove(UIType.UILobby);
+
+                //将房间设为匹配状态
+                room.GetComponent<UIRoomComponent>().Matching = true;
+            }
+            catch (Exception e)
+            {
+                Log.Error(e.ToStr());
+            }
+        }
 
     }
 }
