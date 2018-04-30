@@ -2,6 +2,7 @@ using ProtoBuf;
 using ETModel;
 using System.Collections.Generic;
 using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson.Serialization.Options;
 namespace ETHotfix
 {
 	[Message(HotfixOpcode.C2R_Login)]
@@ -211,6 +212,14 @@ namespace ETHotfix
 
 	}
 
+	[Message(HotfixOpcode.C2G_ReturnLobby)]
+	[ProtoContract]
+	public partial class C2G_ReturnLobby: IMessage
+	{
+	}
+
+	#region Map-Client
+
 	[Message(HotfixOpcode.GamerInfo)]
 	[ProtoContract]
 	public partial class GamerInfo
@@ -237,5 +246,295 @@ namespace ETHotfix
 		public List<GamerInfo> Gamers = new List<GamerInfo>();
 
 	}
+
+	[Message(HotfixOpcode.M2C_GamerExitRoom)]
+	[ProtoContract]
+	public partial class M2C_GamerExitRoom: IActorMessage
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93, IsRequired = true)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1, IsRequired = true)]
+		public long UserID;
+
+	}
+
+	[Message(HotfixOpcode.M2C_GameStart)]
+	[ProtoContract]
+	public partial class M2C_GameStart: IActorMessage
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93, IsRequired = true)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1, IsRequired = true)]
+		public Card[] GamerCards;
+
+		[BsonDictionaryOptions(DictionaryRepresentation.ArrayOfArrays)]
+		[ProtoMember(2, TypeName = "ETHotfix.Dictionary<long,int>")]
+		public Dictionary<long,int> GamerCardsNum = new Dictionary<long,int>();
+
+	}
+
+	[Message(HotfixOpcode.M2C_AuthorityGrabLandlord)]
+	[ProtoContract]
+	public partial class M2C_AuthorityGrabLandlord: IActorMessage
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93, IsRequired = true)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1, IsRequired = true)]
+		public long UserID;
+
+	}
+
+	[Message(HotfixOpcode.M2C_SetMultiples)]
+	[ProtoContract]
+	public partial class M2C_SetMultiples: IActorMessage
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93, IsRequired = true)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1, IsRequired = true)]
+		public int Multiples;
+
+	}
+
+	[Message(HotfixOpcode.M2C_SetLandlord)]
+	[ProtoContract]
+	public partial class M2C_SetLandlord: IActorMessage
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93, IsRequired = true)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1, IsRequired = true)]
+		public long UserID;
+
+		[ProtoMember(2, IsRequired = true)]
+		public Card[] LordCards;
+
+	}
+
+	[Message(HotfixOpcode.M2C_AuthorityPlayCard)]
+	[ProtoContract]
+	public partial class M2C_AuthorityPlayCard: IActorMessage
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93, IsRequired = true)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1, IsRequired = true)]
+		public long UserID;
+
+		[ProtoMember(2, IsRequired = true)]
+		public bool IsFirst;
+
+	}
+
+	[Message(HotfixOpcode.M2C_GamerPlayCard_Ntt)]
+	[ProtoContract]
+	public partial class M2C_GamerPlayCard_Ntt: IActorMessage
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93, IsRequired = true)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1, IsRequired = true)]
+		public long UserID;
+
+		[ProtoMember(2, IsRequired = true)]
+		public Card[] Cards;
+
+	}
+
+	[Message(HotfixOpcode.M2C_Gameover)]
+	[ProtoContract]
+	public partial class M2C_Gameover: IActorMessage
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93, IsRequired = true)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1, IsRequired = true)]
+		public Identity Winner;
+
+		[ProtoMember(2, IsRequired = true)]
+		public long BasePointPerMatch;
+
+		[ProtoMember(3, IsRequired = true)]
+		public int Multiples;
+
+		[BsonDictionaryOptions(DictionaryRepresentation.ArrayOfArrays)]
+		[ProtoMember(4, TypeName = "ETHotfix.Dictionary<long,long>")]
+		public Dictionary<long,long> GamersScore = new Dictionary<long,long>();
+
+	}
+
+	[Message(HotfixOpcode.M2C_GamerMoneyLess)]
+	[ProtoContract]
+	public partial class M2C_GamerMoneyLess: IActorMessage
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93, IsRequired = true)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1, IsRequired = true)]
+		public long UserID;
+
+	}
+
+	#endregion
+
+	#region Client-Map
+
+	[Message(HotfixOpcode.C2M_GamerReady)]
+	[ProtoContract]
+	public partial class C2M_GamerReady: IActorMessage
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93, IsRequired = true)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1, IsRequired = true)]
+		public long UserID;
+
+	}
+
+	[Message(HotfixOpcode.C2M_GamerGrabLandlordSelect)]
+	[ProtoContract]
+	public partial class C2M_GamerGrabLandlordSelect: IActorMessage
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93, IsRequired = true)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1, IsRequired = true)]
+		public long UserID;
+
+		[ProtoMember(2, IsRequired = true)]
+		public bool IsGrab;
+
+	}
+
+	[Message(HotfixOpcode.C2M_Trusteeship)]
+	[ProtoContract]
+	public partial class C2M_Trusteeship: IActorMessage
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93, IsRequired = true)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1, IsRequired = true)]
+		public long UserID;
+
+		[ProtoMember(2, IsRequired = true)]
+		public bool isTrusteeship;
+
+	}
+
+	[Message(HotfixOpcode.C2M_GamerPrompt)]
+	[ProtoContract]
+	public partial class C2M_GamerPrompt: IActorRequest
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93, IsRequired = true)]
+		public long ActorId { get; set; }
+
+	}
+
+	[Message(HotfixOpcode.M2C_GamerPrompt)]
+	[ProtoContract]
+	public partial class M2C_GamerPrompt: IActorResponse
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91, IsRequired = true)]
+		public int Error { get; set; }
+
+		[ProtoMember(92, IsRequired = true)]
+		public string Message { get; set; }
+
+		[ProtoMember(1, IsRequired = true)]
+		public Card[] Cards;
+
+	}
+
+	[Message(HotfixOpcode.C2M_GamerDontPlay)]
+	[ProtoContract]
+	public partial class C2M_GamerDontPlay: IActorMessage
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93, IsRequired = true)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1, IsRequired = true)]
+		public long UserID;
+
+	}
+
+	[Message(HotfixOpcode.C2M_GamerPlayCard)]
+	[ProtoContract]
+	public partial class C2M_GamerPlayCard: IActorRequest
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93, IsRequired = true)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1, IsRequired = true)]
+		public Card[] Cards;
+
+	}
+
+	[Message(HotfixOpcode.M2C_GamerPlayCard)]
+	[ProtoContract]
+	public partial class M2C_GamerPlayCard: IActorResponse
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91, IsRequired = true)]
+		public int Error { get; set; }
+
+		[ProtoMember(92, IsRequired = true)]
+		public string Message { get; set; }
+
+	}
+
+	#endregion
 
 }

@@ -70,6 +70,10 @@ message G2C_StartMatch // IResponse
 {
 }
 
+message C2G_ReturnLobby // IMessage
+{
+}
+
 #region Map-Client
 
 message GamerInfo
@@ -81,6 +85,104 @@ message GamerInfo
 message M2C_GamerEnterRoom // IActorMessage
 {
     repeated GamerInfo Gamers = 1;
+}
+
+message M2C_GamerExitRoom // IActorMessage
+{
+    required long UserID = 1;
+}
+
+message M2C_GameStart // IActorMessage
+{
+    required Card[] GamerCards = 1;
+    [BsonDictionaryOptions(DictionaryRepresentation.ArrayOfArrays)]
+    object Dictionary<long,int> GamerCardsNum = 2;
+}
+
+message M2C_AuthorityGrabLandlord // IActorMessage
+{
+    required long UserID = 1;
+}
+
+message M2C_SetMultiples // IActorMessage
+{
+    required int Multiples = 1;
+}
+
+message M2C_SetLandlord // IActorMessage
+{
+    required long UserID = 1;
+    required Card[] LordCards = 2;
+}
+
+message M2C_AuthorityPlayCard // IActorMessage
+{
+    required long UserID = 1;
+    required bool IsFirst = 2;
+}
+
+message M2C_GamerPlayCard_Ntt // IActorMessage
+{
+    required long UserID = 1;
+    required Card[] Cards = 2;
+}
+
+message M2C_Gameover // IActorMessage
+{
+    required Identity Winner = 1;
+    required long BasePointPerMatch = 2;
+    required int Multiples = 3;
+    [BsonDictionaryOptions(DictionaryRepresentation.ArrayOfArrays)]
+    object Dictionary<long,long> GamersScore = 4;
+}
+
+message M2C_GamerMoneyLess // IActorMessage
+{
+    required long UserID = 1;
+}
+
+#endregion
+
+#region Client-Map
+
+message C2M_GamerReady // IActorMessage
+{
+    required long UserID = 1;
+}
+
+message C2M_GamerGrabLandlordSelect // IActorMessage
+{
+    required long UserID = 1;
+    required bool IsGrab = 2;
+}
+
+message C2M_Trusteeship // IActorMessage
+{
+    required long UserID = 1;
+    required bool isTrusteeship = 2;
+}
+
+message C2M_GamerPrompt // IActorRequest
+{
+}
+
+message M2C_GamerPrompt // IActorResponse
+{
+    required Card[] Cards = 1;
+}
+
+message C2M_GamerDontPlay // IActorMessage
+{
+    required long UserID = 1;
+}
+
+message C2M_GamerPlayCard // IActorRequest
+{
+    required Card[] Cards = 1;
+}
+
+message M2C_GamerPlayCard // IActorResponse
+{
 }
 
 #endregion

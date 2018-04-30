@@ -10,5 +10,6 @@ namespace ETHotfix
 	    public const string UILobby = "UILobby";
         public const string UIRoom = "UIRoom";
         public const string UIInteraction = "UIInteraction";
+        public const string UIEnd = "LandlordsEnd";     
     }
 }

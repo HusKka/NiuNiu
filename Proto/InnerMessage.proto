@@ -220,6 +220,15 @@
     {
     }
 	
+	message G2M_PlayerExitMatch // IRequest
+    {
+        required long UserID = 1;
+    }
+
+    message M2G_PlayerExitMatch // IResponse
+    {
+    }
+	
 	#endregion
 	
 	#region Match-Gate
@@ -255,4 +264,37 @@
     }
 	
 	#endregion
+	
+	#region Map-Match
+	
+	message MP2MH_PlayerExitRoom // IRequest
+    {
+        required long RoomID = 1;
+        required long UserID = 2;
+    }
+	
+	message MH2MP_PlayerExitRoom // IResponse
+    {
+    }
+	
+	message MP2MH_SyncRoomState // IMessage
+    {
+        required long RoomID = 1;
+        required RoomState State = 2;
+    }
+	
+	#endregion
+	
+	#region Gate-Map
+
+    message G2M_PlayerExitRoom // IActorRequest
+    {
+        required long UserID = 1;
+    }
+
+    message M2G_PlayerExitRoom // IActorResponse
+    {
+    }
+
+    #endregion
 }

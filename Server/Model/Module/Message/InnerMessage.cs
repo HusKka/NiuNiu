@@ -2,6 +2,7 @@ using ProtoBuf;
 using ETModel;
 using System.Collections.Generic;
 using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson.Serialization.Options;
 namespace ETModel
 {
 /// <summary>
@@ -508,6 +509,8 @@ namespace ETModel
 
 	}
 
+	#region Realm-Gate
+
 	[Message(InnerOpcode.R2G_PlayerKickOut)]
 	[ProtoContract]
 	public partial class R2G_PlayerKickOut: IRequest
@@ -534,6 +537,10 @@ namespace ETModel
 		public string Message { get; set; }
 
 	}
+
+	#endregion
+
+	#region Gate-Realm
 
 	[Message(InnerOpcode.G2R_PlayerOnline)]
 	[ProtoContract]
@@ -592,6 +599,10 @@ namespace ETModel
 
 	}
 
+	#endregion
+
+	#region Gate-Match
+
 	[Message(InnerOpcode.G2M_PlayerEnterMatch)]
 	[ProtoContract]
 	public partial class G2M_PlayerEnterMatch: IRequest
@@ -625,6 +636,37 @@ namespace ETModel
 
 	}
 
+	[Message(InnerOpcode.G2M_PlayerExitMatch)]
+	[ProtoContract]
+	public partial class G2M_PlayerExitMatch: IRequest
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1, IsRequired = true)]
+		public long UserID;
+
+	}
+
+	[Message(InnerOpcode.M2G_PlayerExitMatch)]
+	[ProtoContract]
+	public partial class M2G_PlayerExitMatch: IResponse
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91, IsRequired = true)]
+		public int Error { get; set; }
+
+		[ProtoMember(92, IsRequired = true)]
+		public string Message { get; set; }
+
+	}
+
+	#endregion
+
+	#region Match-Gate
+
 	[Message(InnerOpcode.M2G_MatchSucess)]
 	[ProtoContract]
 	public partial class M2G_MatchSucess: IActorMessage
@@ -639,6 +681,10 @@ namespace ETModel
 		public long GamerID;
 
 	}
+
+	#endregion
+
+	#region Match-Map
 
 	[Message(InnerOpcode.MH2MP_CreateRoom)]
 	[ProtoContract]
@@ -705,5 +751,87 @@ namespace ETModel
 		public long GamerID;
 
 	}
+
+	#endregion
+
+	#region Map-Match
+
+	[Message(InnerOpcode.MP2MH_PlayerExitRoom)]
+	[ProtoContract]
+	public partial class MP2MH_PlayerExitRoom: IRequest
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1, IsRequired = true)]
+		public long RoomID;
+
+		[ProtoMember(2, IsRequired = true)]
+		public long UserID;
+
+	}
+
+	[Message(InnerOpcode.MH2MP_PlayerExitRoom)]
+	[ProtoContract]
+	public partial class MH2MP_PlayerExitRoom: IResponse
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91, IsRequired = true)]
+		public int Error { get; set; }
+
+		[ProtoMember(92, IsRequired = true)]
+		public string Message { get; set; }
+
+	}
+
+	[Message(InnerOpcode.MP2MH_SyncRoomState)]
+	[ProtoContract]
+	public partial class MP2MH_SyncRoomState: IMessage
+	{
+		[ProtoMember(1, IsRequired = true)]
+		public long RoomID;
+
+		[ProtoMember(2, IsRequired = true)]
+		public RoomState State;
+
+	}
+
+	#endregion
+
+	#region Gate-Map
+
+	[Message(InnerOpcode.G2M_PlayerExitRoom)]
+	[ProtoContract]
+	public partial class G2M_PlayerExitRoom: IActorRequest
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93, IsRequired = true)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1, IsRequired = true)]
+		public long UserID;
+
+	}
+
+	[Message(InnerOpcode.M2G_PlayerExitRoom)]
+	[ProtoContract]
+	public partial class M2G_PlayerExitRoom: IActorResponse
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91, IsRequired = true)]
+		public int Error { get; set; }
+
+		[ProtoMember(92, IsRequired = true)]
+		public string Message { get; set; }
+
+	}
+
+	#endregion
 
 }

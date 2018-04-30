@@ -67,6 +67,17 @@
     <Compile Include="Component\SessionOfflineComponent.cs" />
     <Compile Include="Entity\Gamer.cs" />
     <Compile Include="Factory\GamerFactory.cs" />
+    <Compile Include="Handler\M2C_GamerMoneyLessHandler.cs" />
+    <Compile Include="Handler\M2C_GamerExitRoomHandler.cs" />
+    <Compile Include="Handler\M2C_GameoverHandler.cs" />
+    <Compile Include="Handler\M2C_GamerPlayCard_NttHandler.cs" />
+    <Compile Include="Handler\M2C_GamerDontPlayHandler.cs" />
+    <Compile Include="Handler\M2C_AuthorityPlayCardHandler.cs" />
+    <Compile Include="Handler\M2C_TrusteeshipHandler.cs" />
+    <Compile Include="Handler\M2C_SetLandlordHandler.cs" />
+    <Compile Include="Handler\M2C_GamerGrabLandlordSelectHandler.cs" />
+    <Compile Include="Handler\M2C_AuthorityGrabLandlordHandler.cs" />
+    <Compile Include="Handler\M2C_GamerReadyHandler.cs" />
     <Compile Include="Handler\M2C_GamerEnterRoomHandler.cs" />
     <Compile Include="Helper\CardHelper.cs" />
     <Compile Include="Module\FrameSync\OperaComponent.cs" />
@@ -116,8 +127,10 @@
     <Compile Include="UI\UILogin\Component\UILoginComponent.cs" />
     <Compile Include="UI\UILogin\Event\InitSceneStart_CreateLoginUI.cs" />
     <Compile Include="UI\UILogin\Factory\UILoginFactory.cs" />
+    <Compile Include="UI\UIRoom\Component\UIEndComponent.cs" />
     <Compile Include="UI\UIRoom\Component\UIInteractionComponent.cs" />
     <Compile Include="UI\UIRoom\Component\UIRoomComponent.cs" />
+    <Compile Include="UI\UIRoom\Factory\UIEndFactory.cs" />
     <Compile Include="UI\UIRoom\Factory\UIInteractionFactory.cs" />
     <Compile Include="UI\UIRoom\Factory\UIRoomFactory.cs" />
   </ItemGroup>

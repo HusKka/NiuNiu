@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27428.2011
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.Plugins", "Unity.Plugins.csproj", "{D1FDB199-0FB7-099D-3771-C6A942E4E326}"
 EndProject
@@ -44,6 +44,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {947AF330-013B-4011-A325-70D016E3DAB2}
+		SolutionGuid = {AB0D8076-F9D1-4A7B-AB5D-702A24625477}
 	EndGlobalSection
 EndGlobal

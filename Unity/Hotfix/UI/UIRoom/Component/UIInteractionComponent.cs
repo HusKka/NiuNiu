@@ -165,17 +165,17 @@ namespace ETHotfix
         /// </summary>
         private void OnChangeGameMode()
         {
-            //if (isTrusteeship)
-            //{
-            //    StartPlay();
-            //    changeGameModeButton.GetComponentInChildren<Text>().text = "托管";
-            //}
-            //else
-            //{
-            //    EndPlay();
-            //    changeGameModeButton.GetComponentInChildren<Text>().text = "取消托管";
-            //}
-            //SessionWrapComponent.Instance.Session.Send(new Actor_Trusteeship_Ntt() { isTrusteeship = !this.isTrusteeship });
+            if (isTrusteeship)
+            {
+                StartPlay();
+                changeGameModeButton.GetComponentInChildren<Text>().text = "托管";
+            }
+            else
+            {
+                EndPlay();
+                changeGameModeButton.GetComponentInChildren<Text>().text = "取消托管";
+            }
+            SessionWrapComponent.Instance.Session.Send(new C2M_Trusteeship() { isTrusteeship = !this.isTrusteeship });
         }
 
         /// <summary>
@@ -183,16 +183,16 @@ namespace ETHotfix
         /// </summary>
         private async void OnPlay()
         {
-            //CardHelper.Sort(currentSelectCards);
-            //Actor_GamerPlayCard_Req request = new Actor_GamerPlayCard_Req() { Cards = currentSelectCards.ToArray() };
-            //Actor_GamerPlayCard_Ack response = await SessionWrapComponent.Instance.Session.Call(request) as Actor_GamerPlayCard_Ack;
+            CardHelper.Sort(currentSelectCards);
+            C2M_GamerPlayCard request = new C2M_GamerPlayCard() { Cards = currentSelectCards.ToArray() };
+            M2C_GamerPlayCard response = await SessionWrapComponent.Instance.Session.Call(request) as M2C_GamerPlayCard;
 
-            ////出牌错误提示
-            //GamerUIComponent gamerUI = Game.Scene.GetComponent<UIComponent>().Get(UIType.LandlordsRoom).GetComponent<GamerComponent>().LocalGamer.GetComponent<GamerUIComponent>();
-            //if (response.Error == ErrorCode.ERR_PlayCardError)
-            //{
-            //    gamerUI.SetPlayCardsError();
-            //}
+            //出牌错误提示
+            GamerUIComponent gamerUI = Game.Scene.GetComponent<UIComponent>().Get(UIType.UIRoom).GetComponent<GamerComponent>().LocalGamer.GetComponent<GamerUIComponent>();
+            if (response.Error == ErrorCode.ERR_PlayCardError)
+            {
+                gamerUI.SetPlayCardsError();
+            }
         }
 
         /// <summary>
@@ -200,27 +200,27 @@ namespace ETHotfix
         /// </summary>
         private async void OnPrompt()
         {
-            //Actor_GamerPrompt_Req request = new Actor_GamerPrompt_Req();
-            //Actor_GamerPrompt_Ack response = await SessionWrapComponent.Instance.Session.Call(request) as Actor_GamerPrompt_Ack;
+            C2M_GamerPrompt request = new C2M_GamerPrompt();
+            M2C_GamerPrompt response = await SessionWrapComponent.Instance.Session.Call(request) as M2C_GamerPrompt;
 
-            //GamerComponent gamerComponent = this.GetParent<UI>().GetParent<UI>().GetComponent<GamerComponent>();
-            //HandCardsComponent handCards = gamerComponent.LocalGamer.GetComponent<HandCardsComponent>();
+            GamerComponent gamerComponent = this.GetParent<UI>().GetParent<UI>().GetComponent<GamerComponent>();
+            HandCardsComponent handCards = gamerComponent.LocalGamer.GetComponent<HandCardsComponent>();
 
-            ////清空当前选中
-            //while (currentSelectCards.Count > 0)
-            //{
-            //    Card selectCard = currentSelectCards[currentSelectCards.Count - 1];
-            //    handCards.GetSprite(selectCard).GetComponent<HandCardSprite>().OnClick(null);
-            //}
+            //清空当前选中
+            while (currentSelectCards.Count > 0)
+            {
+                Card selectCard = currentSelectCards[currentSelectCards.Count - 1];
+                handCards.GetSprite(selectCard).GetComponent<HandCardSprite>().OnClick(null);
+            }
 
-            ////自动选中提示出牌
-            //if (response.Cards != null)
-            //{
-            //    for (int i = 0; i < response.Cards.Length; i++)
-            //    {
-            //        handCards.GetSprite(response.Cards[i]).GetComponent<HandCardSprite>().OnClick(null);
-            //    }
-            //}
+            //自动选中提示出牌
+            if (response.Cards != null)
+            {
+                for (int i = 0; i < response.Cards.Length; i++)
+                {
+                    handCards.GetSprite(response.Cards[i]).GetComponent<HandCardSprite>().OnClick(null);
+                }
+            }
         }
 
         /// <summary>
@@ -228,7 +228,7 @@ namespace ETHotfix
         /// </summary>
         private void OnDiscard()
         {
-            //SessionWrapComponent.Instance.Session.Send(new Actor_GamerDontPlay_Ntt());
+            SessionWrapComponent.Instance.Session.Send(new C2M_GamerDontPlay());
         }
 
         /// <summary>
@@ -236,7 +236,7 @@ namespace ETHotfix
         /// </summary>
         private void OnGrab()
         {
-            //SessionWrapComponent.Instance.Session.Send(new Actor_GamerGrabLandlordSelect_Ntt() { IsGrab = true });
+            SessionWrapComponent.Instance.Session.Send(new C2M_GamerGrabLandlordSelect() { IsGrab = true });
         }
 
         /// <summary>
@@ -244,7 +244,7 @@ namespace ETHotfix
         /// </summary>
         private void OnDisgrab()
         {
-            //SessionWrapComponent.Instance.Session.Send(new Actor_GamerGrabLandlordSelect_Ntt() { IsGrab = false });
+            SessionWrapComponent.Instance.Session.Send(new C2M_GamerGrabLandlordSelect() { IsGrab = false });
         }
     }
 }

@@ -11,6 +11,8 @@ namespace ETModel
 		public const int ERR_ConnectGateKeyError = 105;
 
         public const int ERR_UserGoldLessError = 106;
+        public const int ERR_PlayCardError = 106;
+        
 
         // 大于这个错误抛异常
         public const int ERR_Exception = 1000;
