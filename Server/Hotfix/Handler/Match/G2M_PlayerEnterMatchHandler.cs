@@ -18,26 +18,26 @@ namespace ETHotfix
                 if (matchComponent.Playing.ContainsKey(message.UserID))
                 {
                     //todo 重连逻辑
-                    //MatchRoomComponent matchRoomComponent = Game.Scene.GetComponent<MatchRoomComponent>();
-                    //long roomId = matchComponent.Playing[message.UserID];
-                    //Room room = matchRoomComponent.Get(roomId);
-                    //Gamer gamer = room.Get(message.UserID);
+                    MatchRoomComponent matchRoomComponent = Game.Scene.GetComponent<MatchRoomComponent>();
+                    long roomId = matchComponent.Playing[message.UserID];
+                    Room room = matchRoomComponent.Get(roomId);
+                    Gamer gamer = room.Get(message.UserID);
 
-                    ////重置GateActorID
-                    //gamer.PlayerID = message.PlayerID;
+                    //重置GateActorID
+                    gamer.PlayerID = message.PlayerID;
 
-                    ////重连房间
-                    //ActorProxy actorProxy = actorProxyComponent.Get(roomId);
-                    //await actorProxy.Call(new Actor_PlayerEnterRoom_Req()
-                    //{
-                    //    PlayerID = message.PlayerID,
-                    //    UserID = message.UserID,
-                    //    SessionID = message.SessionID
-                    //});
+                    //重连房间
+                    ActorProxy actorProxy = actorProxyComponent.Get(roomId);
+                    await actorProxy.Call(new MH2MP_PlayerEnterRoom()
+                    {
+                        PlayerID = message.PlayerID,
+                        UserID = message.UserID,
+                        SessionID = message.SessionID
+                    });
 
-                    ////向玩家发送匹配成功消息
-                    //ActorProxy gamerActorProxy = actorProxyComponent.Get(gamer.PlayerID);
-                    //gamerActorProxy.Send(new Actor_MatchSucess_Ntt() { GamerID = gamer.Id });
+                    //向玩家发送匹配成功消息
+                    ActorProxy gamerActorProxy = actorProxyComponent.Get(gamer.PlayerID);
+                    gamerActorProxy.Send(new M2G_MatchSucess() { GamerID = gamer.Id });
                 }
                 else
                 {

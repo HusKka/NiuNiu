@@ -92,6 +92,17 @@ message M2C_GamerExitRoom // IActorMessage
     required long UserID = 1;
 }
 
+message M2C_GamerReconnect_ANtt // IActorMessage
+{
+    required int Multiples = 1;
+    [BsonDictionaryOptions(DictionaryRepresentation.ArrayOfArrays)]
+    object Dictionary<long,Identity> GamersIdentity = 2;
+    required Card[] LordCards = 3;
+    required KeyValuePair<long,Card[]> DeskCards = 4;
+    [BsonDictionaryOptions(DictionaryRepresentation.ArrayOfArrays)]
+    object Dictionary<long,bool> GamerGrabLandlordState = 5;
+}
+
 message M2C_GameStart // IActorMessage
 {
     required Card[] GamerCards = 1;

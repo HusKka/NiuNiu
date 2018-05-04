@@ -114,7 +114,7 @@ namespace App
                         Game.Scene.AddComponent<UserComponent>();
 
                         //MapGlobalComponent
-                        //Game.Scene.AddComponent<RoomComponent>();
+                        Game.Scene.AddComponent<RoomComponent>();
 
                         //MatchGlobalComponent
                         Game.Scene.AddComponent<AllotMapComponent>();

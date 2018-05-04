@@ -262,6 +262,35 @@ namespace ETModel
 
 	}
 
+	[Message(HotfixOpcode.M2C_GamerReconnect_ANtt)]
+	[ProtoContract]
+	public partial class M2C_GamerReconnect_ANtt: IActorMessage
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93, IsRequired = true)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1, IsRequired = true)]
+		public int Multiples;
+
+		[BsonDictionaryOptions(DictionaryRepresentation.ArrayOfArrays)]
+		[ProtoMember(2)]
+		public Dictionary<long,Identity> GamersIdentity = new Dictionary<long,Identity>();
+
+		[ProtoMember(3, IsRequired = true)]
+		public Card[] LordCards;
+
+		[ProtoMember(4, IsRequired = true)]
+		public KeyValuePair<long,Card[]> DeskCards;
+
+		[BsonDictionaryOptions(DictionaryRepresentation.ArrayOfArrays)]
+		[ProtoMember(5)]
+		public Dictionary<long,bool> GamerGrabLandlordState = new Dictionary<long,bool>();
+
+	}
+
 	[Message(HotfixOpcode.M2C_GameStart)]
 	[ProtoContract]
 	public partial class M2C_GameStart: IActorMessage
