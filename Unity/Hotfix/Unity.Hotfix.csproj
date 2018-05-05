@@ -67,6 +67,7 @@
     <Compile Include="Component\SessionOfflineComponent.cs" />
     <Compile Include="Entity\Gamer.cs" />
     <Compile Include="Factory\GamerFactory.cs" />
+    <Compile Include="Handler\M2C_GamerReconnect_ANttHandler.cs" />
     <Compile Include="Handler\M2C_SetMultiplesHandler.cs" />
     <Compile Include="Handler\M2C_GameStartHandler.cs" />
     <Compile Include="Handler\M2C_GamerMoneyLessHandler.cs" />
@@ -132,6 +133,8 @@
     <Compile Include="UI\UIRoom\Component\UIEndComponent.cs" />
     <Compile Include="UI\UIRoom\Component\UIInteractionComponent.cs" />
     <Compile Include="UI\UIRoom\Component\UIRoomComponent.cs" />
+    <Compile Include="UI\UIRoom\Event\CancelHandCardEvent.cs" />
+    <Compile Include="UI\UIRoom\Event\SelectHandCardEvent.cs" />
     <Compile Include="UI\UIRoom\Factory\UIEndFactory.cs" />
     <Compile Include="UI\UIRoom\Factory\UIInteractionFactory.cs" />
     <Compile Include="UI\UIRoom\Factory\UIRoomFactory.cs" />
