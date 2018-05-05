@@ -32,7 +32,7 @@ namespace ETHotfix
         /// 轮转
         /// </summary>
         /// <param name="self"></param>
-        public static void Turn(this OrderControllerComponent self)
+        public static void Turn(this OrderControllerComponent self, bool broadcast)
         {
             Room room = self.GetParent<Room>();
             Gamer[] gamers = room.GetAll();
@@ -43,7 +43,7 @@ namespace ETHotfix
                 index = 0;
             }
             self.CurrentAuthority = gamers[index].UserID;
-            room.Broadcast(new M2C_AuthorityPlayCard() { UserID = self.CurrentAuthority, IsFirst = false });
+            if (broadcast) room.Broadcast(new M2C_AuthorityPlayCard() { UserID = self.CurrentAuthority, IsFirst = false });
         }
     }
 }

@@ -67,6 +67,8 @@
     <Compile Include="Component\SessionOfflineComponent.cs" />
     <Compile Include="Entity\Gamer.cs" />
     <Compile Include="Factory\GamerFactory.cs" />
+    <Compile Include="Handler\M2C_SetMultiplesHandler.cs" />
+    <Compile Include="Handler\M2C_GameStartHandler.cs" />
     <Compile Include="Handler\M2C_GamerMoneyLessHandler.cs" />
     <Compile Include="Handler\M2C_GamerExitRoomHandler.cs" />
     <Compile Include="Handler\M2C_GameoverHandler.cs" />

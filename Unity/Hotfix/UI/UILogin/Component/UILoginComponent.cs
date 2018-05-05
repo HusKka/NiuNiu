@@ -49,7 +49,7 @@ namespace ETHotfix
             SessionWrap sessionWrap = null;
             try
 			{
-                string macAddress = SystemInfo.deviceUniqueIdentifier;
+                string macAddress = SystemInfo.deviceUniqueIdentifier + System.DateTime.Now.ToString();
                 string password = "VisitorPassword";
 
 				IPEndPoint connetEndPoint = NetworkHelper.ToIPEndPoint(GlobalConfigComponent.Instance.GlobalProto.Address);

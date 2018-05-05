@@ -79,7 +79,7 @@ namespace ETHotfix
                     orderController.FirstAuthority = new KeyValuePair<long, bool>(gamer.UserID, true);
                 }
 
-                orderController.Turn();
+                orderController.Turn(false);
                 orderController.SelectLordIndex++;
                 room.Broadcast(new M2C_AuthorityGrabLandlord() { UserID = orderController.CurrentAuthority });
             }

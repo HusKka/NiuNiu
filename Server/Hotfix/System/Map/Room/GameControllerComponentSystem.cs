@@ -257,7 +257,7 @@ namespace ETHotfix
             {
                 //轮到下位玩家出牌
                 orderController.Biggest = lastGamer.UserID;
-                orderController.Turn();
+                orderController.Turn(true);
             }
         }
 
