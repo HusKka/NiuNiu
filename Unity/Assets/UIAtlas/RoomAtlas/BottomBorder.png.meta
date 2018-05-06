@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 2cf58d8fafba83e43bd7613c45ef8c86
-timeCreated: 1523787358
+guid: d48848c7d56cee44dbcb6727e5db44df
+timeCreated: 1525600484
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName: {}
@@ -84,7 +84,7 @@ TextureImporter:
     sprites: []
     outline: []
     physicsShape: []
-  spritePackingTag: LoginAtlas
+  spritePackingTag: 
   userData: 
   assetBundleName: 
   assetBundleVariant: 

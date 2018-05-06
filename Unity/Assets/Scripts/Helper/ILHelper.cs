@@ -32,7 +32,7 @@ namespace ETModel
                 {
                     return ((Func<ILRuntime.Runtime.Intepreter.ILTypeInstance, System.Boolean>)act)(obj);
                 });
-            });
+            });
 
             CLRBindings.Initialize(appDomain);
 
