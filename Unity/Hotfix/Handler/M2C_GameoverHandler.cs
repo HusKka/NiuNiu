@@ -12,7 +12,8 @@ namespace ETHotfix
             UI uiRoom = Game.Scene.GetComponent<UIComponent>().Get(UIType.UIRoom);
             GamerComponent gamerComponent = uiRoom.GetComponent<GamerComponent>();
             Identity localGamerIdentity = gamerComponent.LocalGamer.GetComponent<HandCardsComponent>().AccessIdentity;
-            UI uiEndPanel = UIEndFactory.Create(UIType.UIEnd, uiRoom, message.Winner == localGamerIdentity);
+            Identity winner = (Identity)message.Winner;
+            UI uiEndPanel = UIEndFactory.Create(UIType.UIEnd, uiRoom, winner == localGamerIdentity);
             UIEndComponent uiEndComponent = uiEndPanel.GetComponent<UIEndComponent>();
 
             foreach (var gamer in gamerComponent.GetAll())
@@ -21,7 +22,7 @@ namespace ETHotfix
                 gamer.GetComponent<HandCardsComponent>().Hide();
                 uiEndComponent.CreateGamerContent(
                     gamer,
-                    message.Winner,
+                    winner,
                     message.BasePointPerMatch,
                     message.Multiples,
                     message.GamersScore[gamer.UserID]);

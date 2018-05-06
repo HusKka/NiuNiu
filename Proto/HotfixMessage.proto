@@ -140,7 +140,7 @@ message M2C_GamerPlayCard_Ntt // IActorMessage
 
 message M2C_Gameover // IActorMessage
 {
-    required Identity Winner = 1;
+    required int Winner = 1;
     required long BasePointPerMatch = 2;
     required int Multiples = 3;
     [BsonDictionaryOptions(DictionaryRepresentation.ArrayOfArrays)]

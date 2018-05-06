@@ -405,7 +405,7 @@ namespace ETModel
 		public long ActorId { get; set; }
 
 		[ProtoMember(1, IsRequired = true)]
-		public Identity Winner;
+		public int Winner;
 
 		[ProtoMember(2, IsRequired = true)]
 		public long BasePointPerMatch;

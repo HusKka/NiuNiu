@@ -289,7 +289,7 @@ namespace ETHotfix
             //广播游戏结束消息
             room.Broadcast(new M2C_Gameover()
             {
-                Winner = winnerIdentity,
+                Winner = (int)winnerIdentity,
                 BasePointPerMatch = self.BasePointPerMatch,
                 Multiples = self.Multiples,
                 GamersScore = gamersScore
