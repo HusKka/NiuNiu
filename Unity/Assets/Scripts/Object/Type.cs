@@ -46,7 +46,10 @@ namespace ETModel
     {
         None,
         Farmer,     //平民
-        Landlord    //地主
+        Landlord,    //地主
+
+        Dealer,     //庄家
+        Player,     //闲家
     }
 
     /// <summary>
