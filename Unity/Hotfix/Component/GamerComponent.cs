@@ -6,7 +6,7 @@ namespace ETHotfix
     public class GamerComponent : Component
     {
         private readonly Dictionary<long, int> seats = new Dictionary<long, int>();
-        private readonly Gamer[] gamers = new Gamer[3];
+        private readonly Gamer[] gamers = new Gamer[5];
 
         public Gamer LocalGamer { get; set; }
 

@@ -2181,14 +2181,14 @@ MonoBehaviour:
     gameObject: {fileID: 1251409162867304}
   - key: Prompt
     gameObject: {fileID: 1228801334781260}
-  - key: Money
-    gameObject: {fileID: 0}
   - key: HandCards
     gameObject: {fileID: 1139587891878418}
-  - key: PlayCards
-    gameObject: {fileID: 0}
-  - key: HeadPhoto
-    gameObject: {fileID: 0}
+  - key: Protrait
+    gameObject: {fileID: 1053388649593500}
+  - key: Select
+    gameObject: {fileID: 1250782613804540}
+  - key: GoldText
+    gameObject: {fileID: 1697065771877780}
 --- !u!114 &114444587233202982
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2474,14 +2474,14 @@ MonoBehaviour:
     gameObject: {fileID: 1269198208607328}
   - key: Prompt
     gameObject: {fileID: 1583228332148010}
-  - key: Money
-    gameObject: {fileID: 0}
   - key: HandCards
     gameObject: {fileID: 1393020750833428}
-  - key: PlayCards
-    gameObject: {fileID: 0}
-  - key: HeadPhoto
-    gameObject: {fileID: 0}
+  - key: Protrait
+    gameObject: {fileID: 1455125437814904}
+  - key: Select
+    gameObject: {fileID: 1935323362607046}
+  - key: GoldText
+    gameObject: {fileID: 1544574659760664}
 --- !u!114 &114612655867411432
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2558,14 +2558,14 @@ MonoBehaviour:
     gameObject: {fileID: 1132583523343190}
   - key: Prompt
     gameObject: {fileID: 1540152218344542}
-  - key: Money
-    gameObject: {fileID: 0}
   - key: HandCards
     gameObject: {fileID: 1094349053278062}
-  - key: PlayCards
-    gameObject: {fileID: 0}
-  - key: HeadPhoto
-    gameObject: {fileID: 0}
+  - key: Protrait
+    gameObject: {fileID: 1182847431281618}
+  - key: Select
+    gameObject: {fileID: 1483062610233422}
+  - key: GoldText
+    gameObject: {fileID: 1881840148428280}
 --- !u!114 &114654894237218010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2609,14 +2609,14 @@ MonoBehaviour:
     gameObject: {fileID: 1941236592447422}
   - key: Prompt
     gameObject: {fileID: 1244932499830308}
-  - key: Money
-    gameObject: {fileID: 0}
   - key: HandCards
     gameObject: {fileID: 1604081762477106}
-  - key: PlayCards
-    gameObject: {fileID: 0}
-  - key: HeadPhoto
-    gameObject: {fileID: 0}
+  - key: Protrait
+    gameObject: {fileID: 1836374291217076}
+  - key: Select
+    gameObject: {fileID: 1936757490077166}
+  - key: GoldText
+    gameObject: {fileID: 1125708936986162}
 --- !u!114 &114677911505781776
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3012,14 +3012,14 @@ MonoBehaviour:
     gameObject: {fileID: 1534028784002272}
   - key: Prompt
     gameObject: {fileID: 1177049630751046}
-  - key: Money
-    gameObject: {fileID: 0}
   - key: HandCards
     gameObject: {fileID: 1317565326153848}
-  - key: PlayCards
-    gameObject: {fileID: 0}
-  - key: HeadPhoto
-    gameObject: {fileID: 0}
+  - key: Protrait
+    gameObject: {fileID: 1790350421589900}
+  - key: Select
+    gameObject: {fileID: 1774458396645192}
+  - key: GoldText
+    gameObject: {fileID: 1816632713947826}
 --- !u!114 &114877634677458804
 MonoBehaviour:
   m_ObjectHideFlags: 1

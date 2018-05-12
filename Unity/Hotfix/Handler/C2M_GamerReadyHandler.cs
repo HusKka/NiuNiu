@@ -6,7 +6,7 @@ using UnityEngine;
 namespace ETHotfix
 {
     [MessageHandler]
-    public class M2C_GamerReadyHandler : AMHandler<C2M_GamerReady>
+    public class C2M_GamerReadyHandler : AMHandler<C2M_GamerReady>
     {
         protected override void Run(Session session, C2M_GamerReady message)
         {
@@ -18,7 +18,7 @@ namespace ETHotfix
             //本地玩家准备,隐藏准备按钮
             if (gamer.UserID == gamerComponent.LocalGamer.UserID)
             {
-                uiRoom.GameObject.Get<GameObject>("ReadyButton").SetActive(false);
+                uiRoom.GetComponent<UIRoomComponent>().readyButton.SetActive(false);
             }
         }
     }

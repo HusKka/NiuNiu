@@ -80,7 +80,7 @@
     <Compile Include="Handler\M2C_SetLandlordHandler.cs" />
     <Compile Include="Handler\M2C_GamerGrabLandlordSelectHandler.cs" />
     <Compile Include="Handler\M2C_AuthorityGrabLandlordHandler.cs" />
-    <Compile Include="Handler\M2C_GamerReadyHandler.cs" />
+    <Compile Include="Handler\C2M_GamerReadyHandler.cs" />
     <Compile Include="Handler\M2C_GamerEnterRoomHandler.cs" />
     <Compile Include="Helper\CardHelper.cs" />
     <Compile Include="Module\FrameSync\OperaComponent.cs" />

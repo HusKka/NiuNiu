@@ -16,11 +16,14 @@ namespace ETHotfix
 
     public class UIRoomComponent : Component
     {
+        public GameObject quitButton;
+        public GameObject readyButton;
+
         private UIInteractionComponent interaction;
 
-        private Text multiples;
+        //private Text multiples;
 
-        public readonly GameObject[] GamersPanel = new GameObject[3];
+        public readonly GameObject[] GamersPanel = new GameObject[5];
 
         public bool Matching { get; set; }
 
@@ -55,30 +58,33 @@ namespace ETHotfix
         {
             ReferenceCollector rc = this.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
-            GameObject quitButton = rc.Get<GameObject>("QuitButton");
-            GameObject readyButton = rc.Get<GameObject>("ReadyButton");
-            GameObject multiplesObj = rc.Get<GameObject>("Multiples");
-            multiples = multiplesObj.GetComponent<Text>();
+            quitButton = rc.Get<GameObject>("QuitButton");
+            readyButton = rc.Get<GameObject>("ReadyButton");
+            //GameObject multiplesObj = rc.Get<GameObject>("Multiples");
+            //multiples = multiplesObj.GetComponent<Text>();
 
             //绑定事件
             quitButton.GetComponent<Button>().onClick.Add(OnQuit);
             readyButton.GetComponent<Button>().onClick.Add(OnReady);
 
             //默认隐藏UI
-            multiplesObj.SetActive(false);
+            //multiplesObj.SetActive(false);
             readyButton.SetActive(false);
-            rc.Get<GameObject>("Desk").SetActive(false);
+            //rc.Get<GameObject>("Desk").SetActive(false);
 
             //添加玩家面板
             GameObject gamersPanel = rc.Get<GameObject>("Gamers");
-            this.GamersPanel[0] = gamersPanel.Get<GameObject>("Left");
-            this.GamersPanel[1] = gamersPanel.Get<GameObject>("Local");
-            this.GamersPanel[2] = gamersPanel.Get<GameObject>("Right");
+            this.GamersPanel[0] = gamersPanel.Get<GameObject>("Left2");
+            this.GamersPanel[1] = gamersPanel.Get<GameObject>("Left1");
+            this.GamersPanel[2] = gamersPanel.Get<GameObject>("Local");
+            this.GamersPanel[3] = gamersPanel.Get<GameObject>("Right1");
+            this.GamersPanel[4] = gamersPanel.Get<GameObject>("Right2");
+            
 
             //添加本地玩家
             User localPlayer = ClientComponent.Instance.LocalPlayer;
             Gamer localGamer = GamerFactory.Create(localPlayer.UserID, false);
-            AddGamer(localGamer, 1);
+            AddGamer(localGamer, 2);
             this.GetParent<UI>().GetComponent<GamerComponent>().LocalGamer = localGamer;
         }
 
@@ -109,8 +115,8 @@ namespace ETHotfix
         /// <param name="multiples"></param>
         public void SetMultiples(int multiples)
         {
-            this.multiples.gameObject.SetActive(true);
-            this.multiples.text = multiples.ToString();
+            //this.multiples.gameObject.SetActive(true);
+            //this.multiples.text = multiples.ToString();
         }
 
         /// <summary>
@@ -118,8 +124,8 @@ namespace ETHotfix
         /// </summary>
         public void ResetMultiples()
         {
-            this.multiples.gameObject.SetActive(false);
-            this.multiples.text = "1";
+            //this.multiples.gameObject.SetActive(false);
+            //this.multiples.text = "1";
         }
 
         /// <summary>

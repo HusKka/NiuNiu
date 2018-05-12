@@ -25,10 +25,11 @@ namespace ETHotfix
         //玩家昵称
         public string NickName { get { return name.text; } }
 
-        private Image headPhoto;
+        private Image readySelect;
+        private Image protrait;
         private Text prompt;
         private Text name;
-        private Text money;
+        private Text GoldText;
 
         public void Start()
         {
@@ -44,15 +45,16 @@ namespace ETHotfix
         public void ResetPanel()
         {
             ResetPrompt();
-            this.headPhoto.gameObject.SetActive(false);
+            //this.protrait.gameObject.SetActive(false);
             this.name.text = "空位";
-            this.money.text = "";
+            this.GoldText.text = "";
 
             this.Panel = null;
             this.prompt = null;
             this.name = null;
-            this.money = null;
-            this.headPhoto = null;
+            this.GoldText = null;
+            this.protrait = null;
+            this.readySelect = null;
         }
 
         /// <summary>
@@ -66,8 +68,14 @@ namespace ETHotfix
             //绑定关联
             this.prompt = this.Panel.Get<GameObject>("Prompt").GetComponent<Text>();
             this.name = this.Panel.Get<GameObject>("Name").GetComponent<Text>();
-            this.money = this.Panel.Get<GameObject>("Money").GetComponent<Text>();
-            this.headPhoto = this.Panel.Get<GameObject>("HeadPhoto").GetComponent<Image>();
+            this.GoldText = this.Panel.Get<GameObject>("GoldText").GetComponent<Text>();
+            this.protrait = this.Panel.Get<GameObject>("Protrait").GetComponent<Image>();
+            this.readySelect = this.Panel.Get<GameObject>("Select").GetComponent<Image>();
+
+            this.prompt.text = "";
+            this.name.text = "";
+            this.GoldText.text = "";
+            this.readySelect.gameObject.SetActive(false);
 
             UpdatePanel();
         }
@@ -80,7 +88,6 @@ namespace ETHotfix
             if (this.Panel != null)
             {
                 SetUserInfo();
-                headPhoto.gameObject.SetActive(false);
             }
         }
 
@@ -95,8 +102,8 @@ namespace ETHotfix
 
             string spriteName = $"Identity_{Enum.GetName(typeof(Identity), identity)}";
             Sprite headSprite = CardHelper.GetCardSprite(spriteName);
-            headPhoto.sprite = headSprite;
-            headPhoto.gameObject.SetActive(true);
+            protrait.sprite = headSprite;
+            protrait.gameObject.SetActive(true);
         }
 
         /// <summary>
@@ -104,7 +111,8 @@ namespace ETHotfix
         /// </summary>
         public void SetReady()
         {
-            prompt.text = "准备！";
+            //prompt.text = "准备！";
+            readySelect.gameObject.SetActive(true);
         }
 
         /// <summary>
@@ -160,12 +168,12 @@ namespace ETHotfix
         /// <param name="id"></param>
         private async void SetUserInfo()
         {
-            G2C_GetUserInfo g2C_GetUserInfo_Ack = await SessionWrapComponent.Instance.Session.Call(new C2G_GetUserInfo() { UserID = this.GetParent<Gamer>().UserID }) as G2C_GetUserInfo;
+            G2C_GetUserInfo g2C_GetUserInfo = await SessionWrapComponent.Instance.Session.Call(new C2G_GetUserInfo() { UserID = this.GetParent<Gamer>().UserID }) as G2C_GetUserInfo;
 
             if (this.Panel != null)
             {
-                name.text = g2C_GetUserInfo_Ack.NickName;
-                money.text = g2C_GetUserInfo_Ack.Gold.ToString();
+                name.text = g2C_GetUserInfo.NickName;
+                GoldText.text = g2C_GetUserInfo.Gold.ToString();
             }
         }
 
